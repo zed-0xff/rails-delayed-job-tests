@@ -7,6 +7,8 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* && \
     gem install bundler:1.17.3
 
+RUN npm install --global yarn
+
 WORKDIR /app
 COPY Gemfile .
 COPY Gemfile.lock .
