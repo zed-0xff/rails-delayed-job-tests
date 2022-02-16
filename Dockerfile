@@ -10,8 +10,8 @@ RUN apt-get update && \
 RUN npm install --global yarn
 
 WORKDIR /app
-COPY Gemfile .
-COPY Gemfile.lock .
-RUN bundle install
+#COPY Gemfile .
+#COPY Gemfile.lock .
+#RUN bundle install
 
-CMD ["rails", "server", "-b", "0.0.0.0"]
+CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]
