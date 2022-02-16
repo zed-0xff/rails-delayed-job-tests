@@ -22,6 +22,7 @@ services:
       - bundle_cache:/usr/local/bundle
     environment:
       POSTGRES_PASSWORD: eer6eigh9ooDe4po
+      GOOD_JOB_EXECUTION_MODE: async
 
 volumes:
   bundle_cache:
