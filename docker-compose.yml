@@ -22,7 +22,36 @@ services:
       - bundle_cache:/usr/local/bundle
     environment:
       POSTGRES_PASSWORD: eer6eigh9ooDe4po
-      GOOD_JOB_EXECUTION_MODE: async
+
+  worker1:
+    command: bundle exec good_job start
+    build: .
+    depends_on:
+      - db
+    image: rails-base
+    restart: always
+    volumes:
+      - .:/app
+      - bundle_cache:/usr/local/bundle
+    environment:
+      POSTGRES_PASSWORD: eer6eigh9ooDe4po
+      GOOD_JOB_POLL_INTERVAL: 1
+      GOOD_JOB_MAX_THREADS: 10
+
+  worker2:
+    command: bundle exec good_job start
+    build: .
+    depends_on:
+      - db
+    image: rails-base
+    restart: always
+    volumes:
+      - .:/app
+      - bundle_cache:/usr/local/bundle
+    environment:
+      POSTGRES_PASSWORD: eer6eigh9ooDe4po
+      GOOD_JOB_POLL_INTERVAL: 1
+      GOOD_JOB_MAX_THREADS: 10
 
 volumes:
   bundle_cache:
