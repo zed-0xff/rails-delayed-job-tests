@@ -6,6 +6,8 @@ ruby '2.6.8'
 gem 'good_job'
 gem 'pg'
 
+gem 'haml-rails'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.0.4', '>= 6.0.4.6'
 # Use Puma as the app server
