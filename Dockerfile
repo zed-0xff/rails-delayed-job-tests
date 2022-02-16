@@ -13,3 +13,5 @@ WORKDIR /app
 COPY Gemfile .
 COPY Gemfile.lock .
 RUN bundle install
+
+CMD ["rails", "server", "-b", "0.0.0.0"]
