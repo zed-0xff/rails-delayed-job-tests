@@ -6,6 +6,8 @@ services:
     restart: always
     environment:
       POSTGRES_PASSWORD: eer6eigh9ooDe4po
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
 
   app:
     build: .
