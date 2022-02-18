@@ -12,12 +12,7 @@ module App
     config.load_defaults 6.0
     config.hosts << "z1"
 
-    if defined?(ActiveJob::QueueAdapters::ShoryukenConcurrentSendAdapter)
-      # async one, faster
-      config.active_job.queue_adapter = ActiveJob::QueueAdapters::ShoryukenConcurrentSendAdapter.new
-    else
-      config.active_job.queue_adapter = :shoryuken
-    end
+    config.active_job.queue_adapter = :lambdakiq
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers

@@ -97,6 +97,11 @@ GEM
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
     jmespath (1.6.0)
+    lambdakiq (2.0.0)
+      activejob
+      aws-sdk-sqs
+      concurrent-ruby
+      railties
     listen (3.7.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -172,10 +177,6 @@ GEM
       childprocess (>= 0.5, < 5.0)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2)
-    shoryuken (5.3.2)
-      aws-sdk-core (>= 2)
-      concurrent-ruby
-      thor
     spring (2.1.1)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
@@ -220,17 +221,16 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  aws-sdk-sqs
   bootsnap (>= 1.4.2)
   byebug
   capybara (>= 2.15)
   jbuilder (~> 2.7)
+  lambdakiq
   listen (~> 3.2)
   puma (~> 4.1)
   rails (~> 6.0.4, >= 6.0.4.6)
   sass-rails (>= 6)
   selenium-webdriver
-  shoryuken
   spring
   spring-watcher-listen (~> 2.0.0)
   sqlite3 (~> 1.4)
