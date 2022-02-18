@@ -4,6 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.6.8'
 
 gem 'que'
+gem 'que-web'
 gem 'pg'
 
 gem 'haml-rails'

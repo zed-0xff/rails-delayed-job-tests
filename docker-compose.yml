@@ -23,5 +23,18 @@ services:
     environment:
       POSTGRES_PASSWORD: eer6eigh9ooDe4po
 
+  worker:
+    command: bundle exec que
+    build: .
+    depends_on:
+      - db
+    image: rails-base
+    restart: always
+    volumes:
+      - .:/app
+      - bundle_cache:/usr/local/bundle
+    environment:
+      POSTGRES_PASSWORD: eer6eigh9ooDe4po
+
 volumes:
   bundle_cache:

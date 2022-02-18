@@ -1,7 +1,5 @@
-class RetryJob < ApplicationJob
-  queue_as :default
-
-  def perform(*args)
-    raise RetryLater.new
+class RetryJob < Que::Job
+  def run(*args)
+    raise "foo"
   end
 end
