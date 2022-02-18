@@ -1,4 +1,6 @@
 class ApplicationJob < ActiveJob::Base
+  queue_as :z1
+
   # Automatically retry jobs that encountered a deadlock
   # retry_on ActiveRecord::Deadlocked
 

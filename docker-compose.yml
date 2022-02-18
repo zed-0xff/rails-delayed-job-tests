@@ -1,0 +1,28 @@
+version: '3.1'
+
+services:
+  app:
+    build: .
+    image: rails-base
+    restart: always
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/app
+      - bundle_cache:/usr/local/bundle
+    environment:
+      AWS_REGION: eu-west-1
+
+  worker:
+    command: bundle exec shoryuken -q z1 -R
+    build: .
+    image: rails-base
+    restart: always
+    volumes:
+      - .:/app
+      - bundle_cache:/usr/local/bundle
+    environment:
+      AWS_REGION: eu-west-1
+
+volumes:
+  bundle_cache:
