@@ -1,6 +1,4 @@
-class ErrorJob
-  include Sidekiq::Job
-
+class ErrorJob < DefaultJob
   def perform(*args)
     raise 'boo'
   end

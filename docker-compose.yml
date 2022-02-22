@@ -1,7 +1,7 @@
 version: '3.1'
 
 services:
-  app:
+  app1:
     build: .
     image: rails-base
     restart: always
@@ -12,9 +12,24 @@ services:
       - bundle_cache:/usr/local/bundle
     environment:
       REDIS_URL: redis://z1.0x7cbi.ng.0001.euw1.cache.amazonaws.com:6379
+      APP_QUEUE: q1
 
-  worker:
-    command: bundle exec sidekiq
+  app2:
+    command: bundle exec rails s -b 0.0.0.0 -P tmp/pids/server2.pid
+    build: .
+    image: rails-base
+    restart: always
+    ports:
+      - 3001:3000
+    volumes:
+      - .:/app
+      - bundle_cache:/usr/local/bundle
+    environment:
+      REDIS_URL: redis://z1.0x7cbi.ng.0001.euw1.cache.amazonaws.com:6379
+      APP_QUEUE: q2
+
+  worker1:
+    command: bundle exec sidekiq -q q1
     build: .
     image: rails-base
     restart: always
@@ -24,9 +39,18 @@ services:
     environment:
       REDIS_URL: redis://z1.0x7cbi.ng.0001.euw1.cache.amazonaws.com:6379
       RAILS_MAX_THREADS: 20
-    deploy:
-      mode: replicated
-      replicas: 5
+
+  worker2:
+    command: bundle exec sidekiq -q q2
+    build: .
+    image: rails-base
+    restart: always
+    volumes:
+      - .:/app
+      - bundle_cache:/usr/local/bundle
+    environment:
+      REDIS_URL: redis://z1.0x7cbi.ng.0001.euw1.cache.amazonaws.com:6379
+      RAILS_MAX_THREADS: 20
 
 volumes:
   bundle_cache:

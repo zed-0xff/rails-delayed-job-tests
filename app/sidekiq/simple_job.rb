@@ -1,6 +1,4 @@
-class SimpleJob
-  include Sidekiq::Job
-
+class SimpleJob < DefaultJob
   def perform(*args)
     # Do something
   end

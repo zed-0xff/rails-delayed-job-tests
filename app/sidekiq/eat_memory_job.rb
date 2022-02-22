@@ -1,6 +1,4 @@
-class EatMemoryJob
-  include Sidekiq::Job
-
+class EatMemoryJob < DefaultJob
   def perform(*args)
     x = "boo"
     while true do
