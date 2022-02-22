@@ -23,6 +23,10 @@ services:
       - bundle_cache:/usr/local/bundle
     environment:
       REDIS_URL: redis://z1.0x7cbi.ng.0001.euw1.cache.amazonaws.com:6379
+      RAILS_MAX_THREADS: 20
+    deploy:
+      mode: replicated
+      replicas: 5
 
 volumes:
   bundle_cache:
