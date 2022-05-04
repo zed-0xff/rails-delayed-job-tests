@@ -1,3 +1,9 @@
+class RetryException < StandardError
+  def backtrace
+    super.try(:[], 0, 1)
+  end
+end
+
 class ApplicationJob < ActiveJob::Base
   # Automatically retry jobs that encountered a deadlock
   # retry_on ActiveRecord::Deadlocked
