@@ -14,22 +14,8 @@ services:
       REDIS_URL: redis://z1.0x7cbi.ng.0001.euw1.cache.amazonaws.com:6379
       APP_QUEUE: q1
 
-  app2:
-    command: bundle exec rails s -b 0.0.0.0 -P tmp/pids/server2.pid
-    build: .
-    image: rails-base
-    restart: always
-    ports:
-      - 3001:3000
-    volumes:
-      - .:/app
-      - bundle_cache:/usr/local/bundle
-    environment:
-      REDIS_URL: redis://z1.0x7cbi.ng.0001.euw1.cache.amazonaws.com:6379
-      APP_QUEUE: q2
-
   worker1:
-    command: bundle exec sidekiq -q q1
+    command: bundle exec sidekiq -q q99
     build: .
     image: rails-base
     restart: always

@@ -1,0 +1,11 @@
+qj1:
+  cron: "* * * * *"
+  class: "SleepyJob"
+  queue: q1
+  enable: false
+
+qj2:
+  cron: "* * * * *"
+  class: "SleepyJob"
+  queue: q2
+  enable: false
