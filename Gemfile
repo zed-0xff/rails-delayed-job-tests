@@ -5,6 +5,8 @@ ruby '3.1.2'
 
 gem 'delayed_job_active_record'
 
+gem 'psych', '< 4'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.0.4', '>= 6.0.4.6'
 # Use sqlite3 as the database for Active Record
