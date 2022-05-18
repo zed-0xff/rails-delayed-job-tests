@@ -1,0 +1,41 @@
+version: '3.1'
+
+services:
+  db:
+    container_name: db
+    image: postgres:13.1-alpine
+#    volumes:
+#      - db-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: example
+      POSTGRES_DB: example
+
+  app:
+    depends_on:
+      - db
+    build: .
+    image: rails-base
+    restart: always
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/app
+      - bundle_cache:/usr/local/bundle
+    environment: {}
+
+  worker:
+    command: bundle exec rake jobs:work
+    build: .
+    image: rails-base
+    restart: always
+    volumes:
+      - .:/app
+      - bundle_cache:/usr/local/bundle
+    environment: {}
+    deploy:
+      mode: replicated
+      replicas: 30
+
+volumes:
+  bundle_cache:
+  db-data:
